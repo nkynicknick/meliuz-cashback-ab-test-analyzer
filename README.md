@@ -260,6 +260,70 @@ Depois disso, o pipeline Python executa a análise.
 
 ---
 
+### 6.3. Exemplo de execução
+
+### Exemplo usando o modo determinístico para analisar o dataset do Parceiro C:
+
+```bash
+python run_analysis.py --file data/raw/dataset_03_parceiroC.csv
+```
+
+Saída esperada:
+
+```text
+Enviando dados para o Google Sheets...
+Salvo na planilha com sucesso
+Análise concluída com sucesso.
+
+Arquivo analisado: data/raw/dataset_03_parceiroC.csv
+Parceiro: Parceiro C
+Decisão: ESCALAR Grupo 1
+Variante recomendada: Grupo 1
+Relatório gerado: reports/dataset_03_parceiroC_report.md
+Tracker atualizado: outputs/ab_tests_tracker.csv
+
+Alertas:
+- O dataset não contém usuários expostos por grupo; portanto, a análise não estima conversão real.
+```
+
+
+### Exemplo usando o modo AI-native com linguagem natural para analisar o dataset do Parceiro A:
+
+```bash
+python ai_run_analysis.py --request "Analise o teste do Parceiro A"
+```
+
+```text
+Enviando dados para o Google Sheets...
+Salvo na planilha com sucesso
+Análise concluída para Parceiro A.
+
+Recomendação: ESCALAR Grupo 1.
+
+Justificativa:
+- A variante recomendada foi Grupo 1.
+- Receita líquida da variante vencedora: R$ 404.711,00.
+- Margem líquida da variante vencedora: 7,22%.
+- Vantagem contra a segunda melhor variante: 13,20%.
+
+Alertas:
+- A variante recomendada não foi a que trouxe mais compradores. A maior quantidade de compradores ocorreu em Grupo 3.
+- A variante recomendada não foi a que gerou maior GMV. O maior GMV ocorreu em Grupo 3.
+- O dataset não contém usuários expostos por grupo; portanto, a análise não estima conversão real.
+
+Arquivos gerados:
+- Relatório: reports\dataset_01_parceiroA_report.md
+- Tracker: outputs\ab_tests_tracker.csv
+
+Interpretação do pedido pela IA:
+- Arquivo analisado: data/raw/dataset_01_parceiroA.csv
+- Vantagem mínima considerada: 2,00%
+- Gerar relatório: True
+- Registrar tracker: True
+```
+
+---
+
 ## 7. Entrada esperada
 
 O CSV deve conter, minimamente, as seguintes colunas:
